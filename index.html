@@ -2,13 +2,13 @@
 <html lang="hu">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Free Web tutorials">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="I. Bori">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="description" content="Free Web tutorials" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="I. Bori" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>I. Bori</title>
-    <link rel="stylesheet" href="stilus.css">
+    <link rel="stylesheet" href="stilus.css" />
     <script type="module" src="main.js"></script>
 </head>
 
@@ -20,22 +20,20 @@
 
         <section id="beallitasok" style="margin-bottom: 1rem;">
             <div>
-                <label for="xJatekosNev">X játékos neve:</label><br>
+                <label for="xJatekosNev">X játékos neve:</label><br />
                 <input type="text" id="xJatekosNev" placeholder="X neve" />
             </div>
             <div style="margin-top: 0.5rem;">
-                <label for="oJatekosNev">O játékos neve:</label><br>
+                <label for="oJatekosNev">O játékos neve:</label><br />
                 <input type="text" id="oJatekosNev" placeholder="O neve" />
             </div>
             <button id="nevMentese" style="margin-top: 1rem;">Mentés</button>
         </section>
 
-        <div id="jatekter"></div>
-
-        <section id="jatekinfok">
-            <p id="kovetkezoJatekos"></p>
-            <p id="utolsoLepes"></p>
-            <p id="infoSzoveg"></p>  <!-- EZT HOZZÁADTAM -->
+        <!-- Közös konténer a játék és állapot résznek -->
+        <section id="jatekterAllapotContainer">
+            <div id="jatekter"></div>
+            <div id="jatekinfok"></div>
         </section>
 
         <button id="ujraindit">Újraindít</button>
