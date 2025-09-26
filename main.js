@@ -1,5 +1,3 @@
-// main.js
-
 import TTTController from './controller/TTTController.js';
 
 window.addEventListener('DOMContentLoaded', () => {
