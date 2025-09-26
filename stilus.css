@@ -1,31 +1,78 @@
-/* style.css */
-
+/* Alap beállítások */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 30px;
+    background-color: #0b3d0b; /* sötétzöld háttér */
+    color: #c8facc; /* világos zöld szöveg */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Játéktábla */
 .tabla {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    gap: 5px;
-    width: fit-content;
-    margin: auto;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 10px;
+    margin-bottom: 1rem;
 }
 
 .mezo {
+    background-color: #145214; /* közepes sötétzöld */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 36px;
-    border: 2px solid #444;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d4f4dd;
     cursor: pointer;
-    background-color: #f0f0f0;
     user-select: none;
+    transition: background-color 0.3s ease, transform 0.15s ease;
 }
 
 .mezo:hover {
-    background-color: #ddd;
+    background-color: #2c7a2c; /* világosabb zöld hover */
+    transform: scale(1.1);
+}
+
+/* Információ szöveg */
+#infoSzoveg {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* Újraindító gomb */
+#ujraindit {
+    background-color: #267326;
+    border: none;
+    border-radius: 6px;
+    color: #d4f4dd;
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+}
+
+#ujraindit:hover {
+    background-color: #3ea63e;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: #a2c1a2;
 }
