@@ -2,13 +2,14 @@ import TTTController from './controller/TTTController.js';
 
 window.addEventListener('DOMContentLoaded', () => {
     const jatekter = document.getElementById('jatekter');
-    const jatekinfok = document.getElementById('jatekinfok');
+    const altalanosUzenet = document.getElementById('altalanosUzenet');
+    const nyertesUzenet = document.getElementById('nyertesUzenet');
+    const legutobbiLepes = document.getElementById('legutobbiLepes');
     const xNevInput = document.getElementById('xJatekosNev');
     const oNevInput = document.getElementById('oJatekosNev');
     const ujrainditGomb = document.getElementById('ujraindit');
 
-    // A Controller-nek átadjuk a játékteret és az infó dobozt is
-    const controller = new TTTController(jatekter, jatekinfok, xNevInput, oNevInput);
+    const controller = new TTTController(jatekter, altalanosUzenet, legutobbiLepes, nyertesUzenet, xNevInput, oNevInput);
 
     ujrainditGomb.addEventListener('click', () => {
         controller.ujraindit();

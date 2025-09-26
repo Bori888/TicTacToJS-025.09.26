@@ -1,32 +1,19 @@
 export default class TTTAllapotView {
-    constructor(szuloElem) {
-        this.szuloElem = szuloElem;
-
-        this.allapotElem = document.createElement('p');
-        this.allapotElem.style.fontWeight = 'bold';
-
-        this.lepesLista = document.createElement('ul');
-        this.lepesLista.style.paddingLeft = '20px';
-        this.lepesLista.style.marginTop = '10px';
-        this.lepesLista.style.maxHeight = '350px';
-        this.lepesLista.style.overflowY = 'auto';
-        this.lepesLista.style.fontSize = '0.9em';
-
-        this.szuloElem.appendChild(this.allapotElem);
-        this.szuloElem.appendChild(this.lepesLista);
+    constructor(elem) {
+        this.elem = elem;
     }
 
-    megjelenit(szoveg) {
-        this.allapotElem.textContent = szoveg;
+    megjelenit(uzenet, kiemelt = false) {
+        this.elem.textContent = uzenet;
+        if (kiemelt) {
+            this.elem.classList.add('kiemelt');
+        } else {
+            this.elem.classList.remove('kiemelt');
+        }
     }
 
-    lepesHozzaad(szoveg) {
-        const li = document.createElement('li');
-        li.textContent = szoveg;
-        this.lepesLista.appendChild(li);
-    }
-
-    lepesekTorles() {
-        this.lepesLista.innerHTML = '';
+    torol() {
+        this.elem.textContent = '';
+        this.elem.classList.remove('kiemelt');
     }
 }

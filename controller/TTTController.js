@@ -4,36 +4,49 @@ import TTTJatekosokView from '../view/TTTJatekosokView.js';
 import TTTAllapotView from '../view/TTTAllapotView.js';
 
 export default class TTTController {
-    constructor(szuloElem, infoSzuloElem, xNevInput, oNevInput) {
+    constructor(szuloElem, altalanosUzenetElem, legutobbiLepesElem, nyertesUzenetElem, xNevInput, oNevInput) {
         this.szuloElem = szuloElem;
-        this.infoSzuloElem = infoSzuloElem;
+        this.altalanosUzenetElem = altalanosUzenetElem;
+        this.legutobbiLepesElem = legutobbiLepesElem;
+        this.nyertesUzenetElem = nyertesUzenetElem;
         this.xNevInput = xNevInput;
         this.oNevInput = oNevInput;
 
+        this.jatekosokView = new TTTJatekosokView(this.altalanosUzenetElem, this.legutobbiLepesElem);
+        this.allapotView = new TTTAllapotView(this.nyertesUzenetElem);
+
+        this.xNevInput.addEventListener('input', () => this.ujraindit());
+        this.oNevInput.addEventListener('input', () => this.ujraindit());
+
+        this.ujraindit();
+    }
+
+    ujraindit() {
+        this.xNev = this.xNevInput.value.trim() || 'X játékos';
+        this.oNev = this.oNevInput.value.trim() || 'O játékos';
+
         this.modell = new TTTModell();
-        this.view = new TTTView(this.szuloElem, this.modell.getLista());
 
-        this.xNev = 'X játékos';
-        this.oNev = 'O játékos';
+        // Létrehozzuk vagy újraépítjük a view-t
+        if (!this.view) {
+            this.view = new TTTView(this.szuloElem, this.modell.getLista());
+        } else {
+            // Ha már létezett, csak megjelenít újra
+            this.view.megjelenit(this.modell.getLista(), this.kattintasKezelo.bind(this));
+        }
 
-        this.jatekosokView = new TTTJatekosokView(this.infoSzuloElem);
-        this.allapotView = new TTTAllapotView(this.infoSzuloElem);
-
+        // Mindig beállítjuk az eseményt az új mezőkre
         this.view.kattintasEsemeny(this.kattintasKezelo.bind(this));
 
-        document.getElementById('nevMentese').addEventListener('click', () => {
-            this.xNev = this.xNevInput.value.trim() || 'X játékos';
-            this.oNev = this.oNevInput.value.trim() || 'O játékos';
-            this.ujrair();
-        });
-
-        this.ujrair(); // kezdeti megjelenítés
+        this.jatekosokView.lepesekTorles();
+        this.jatekosokView.megjelenit(`${this.xNev} (X) kezd.`);
+        this.allapotView.megjelenit('');
     }
 
     kattintasKezelo(index) {
-        const sikeres = this.modell.setAllapot(index); // sikerült-e lépni?
+        const sikeres = this.modell.setAllapot(index);
         if (sikeres) {
-            this.view.megjelenit(this.modell.getLista());
+            this.view.frissit(this.modell.getLista());
             this.ujrair(index);
         }
     }
@@ -42,7 +55,7 @@ export default class TTTController {
         const vege = this.modell.getVegeVanE();
 
         if (vege === 'nincs') {
-            const kovetkezoJel = this.modell.getAllapot() === 0 ? 'O' : 'X';
+            const kovetkezoJel = this.modell.getAllapot() === 0 ? 'X' : 'O';
             const kovetkezoNev = kovetkezoJel === 'X' ? this.xNev : this.oNev;
             this.jatekosokView.megjelenit(`${kovetkezoNev} (${kovetkezoJel}) következik.`);
             this.allapotView.megjelenit('Játék folyamatban...');
@@ -51,29 +64,18 @@ export default class TTTController {
                 const sor = Math.floor(utolsoIndex / 3);
                 const oszlop = utolsoIndex % 3;
                 const sorBetuk = ['A', 'B', 'C'];
-                const lepettJel = this.modell.getLista()[utolsoIndex];
-                const lepettNev = lepettJel === 'X' ? this.xNev : this.oNev;
-                const lepesSzoveg = `${lepettNev} (${lepettJel}) lépett: sor ${sorBetuk[sor]}, oszlop ${oszlop + 1}`;
-                this.jatekosokView.kiirUtsoLepes(lepesSzoveg);
-                this.allapotView.lepesHozzaad(lepesSzoveg);
+                const jel = this.modell.getLista()[utolsoIndex];
+                const nev = jel === 'X' ? this.xNev : this.oNev;
+                const szoveg = `${nev} (${jel}) lépett: sor ${sorBetuk[sor]}, oszlop ${oszlop + 1}`;
+                this.jatekosokView.kiirUtsoLepes(szoveg);
             }
         } else if (vege === 'döntetlen') {
-            this.jatekosokView.megjelenit('');
-            this.jatekosokView.kiirUtsoLepes('');
+            this.jatekosokView.megjelenit('A játék döntetlennel zárult.');
             this.allapotView.megjelenit('Döntetlen lett a játék!');
         } else {
-            this.jatekosokView.megjelenit('');
-            this.jatekosokView.kiirUtsoLepes('');
-            this.allapotView.megjelenit(`${vege.toUpperCase()} nyert! Gratulálok!`);
+            const nyertesNev = vege === 'X' ? this.xNev : this.oNev;
+            this.jatekosokView.megjelenit(`${nyertesNev} (${vege}) nyert a játékban.`);
+            this.allapotView.megjelenit(`${nyertesNev} (${vege}) nyert! Gratulálok!`, true);
         }
-    }
-
-    ujraindit() {
-        this.modell = new TTTModell();
-        this.view = new TTTView(this.szuloElem, this.modell.getLista());
-
-        this.view.kattintasEsemeny(this.kattintasKezelo.bind(this));
-        this.allapotView.lepesekTorles();
-        this.ujrair();
     }
 }

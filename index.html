@@ -13,37 +13,34 @@
 </head>
 
 <body>
-    <main>
-        <header>
-            <h1>Tic-Tac-To</h1>
-        </header>
+    <header>
+        <h1>Tik-Tak-To játék</h1>
+    </header>
 
-        <section id="beallitasok" style="margin-bottom: 1rem;">
-            <div>
-                <label for="xJatekosNev">X játékos neve:</label><br />
-                <input type="text" id="xJatekosNev" placeholder="X neve" />
-            </div>
-            <div style="margin-top: 0.5rem;">
-                <label for="oJatekosNev">O játékos neve:</label><br />
-                <input type="text" id="oJatekosNev" placeholder="O neve" />
-            </div>
-            <button id="nevMentese" style="margin-top: 1rem;">Mentés</button>
+    <section id="beallitasok">
+        <label for="xJatekosNev">X játékos neve:</label>
+        <input type="text" id="xJatekosNev" placeholder="X játékos neve" />
+        <br />
+        <label for="oJatekosNev">O játékos neve:</label>
+        <input type="text" id="oJatekosNev" placeholder="O játékos neve" />
+    </section>
+
+    <!-- Közös konténer: játék és állapot egymás mellett -->
+    <section id="jatekterAllapotContainer">
+        <div id="jatekter"></div>
+
+        <section id="jatekinfok">
+            <div id="altalanosUzenet"></div>
+            <div id="legutobbiLepes"></div>
+            <div id="nyertesUzenet"></div>
         </section>
+    </section>
 
-        <section id="jatekterAllapotContainer">
-            <div id="jatekter"><!-- Itt nincs előre létrehozott mező --> </div>
+    <button id="ujraindit">Újraindít</button>
 
-            <div id="jatekinfok">
-                <!-- Ide kerülnek a játék állapot információk -->
-            </div>
-        </section>
-
-        <button id="ujraindit">Újraindít</button>
-
-        <footer>
-            <p>Készítette I. Bori</p>
-        </footer>
-    </main>
+    <footer>
+        &copy; 2025 Kriz-Kraz játék
+    </footer>
 </body>
 
 </html>

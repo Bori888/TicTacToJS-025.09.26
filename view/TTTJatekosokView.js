@@ -1,19 +1,21 @@
 export default class TTTJatekosokView {
-    constructor(szuloElem) {
-        this.szuloElem = szuloElem;
-
-        this.kovetkezoElem = document.createElement('p');
-        this.utolsoLepesElem = document.createElement('p');
-
-        this.szuloElem.appendChild(this.kovetkezoElem);
-        this.szuloElem.appendChild(this.utolsoLepesElem);
+    constructor(altalanosUzenetElem, lepesListaElem) {
+        this.altalanosUzenetElem = altalanosUzenetElem;
+        this.lepesListaElem = lepesListaElem;
+        this.lepesListaElem.style.whiteSpace = 'pre-line';
     }
 
-    megjelenit(szoveg) {
-        this.kovetkezoElem.textContent = szoveg;
+    megjelenit(uzenet) {
+        this.altalanosUzenetElem.textContent = uzenet;
     }
 
-    kiirUtsoLepes(szoveg) {
-        this.utolsoLepesElem.textContent = szoveg;
+    kiirUtsoLepes(uzenet) {
+        if (uzenet) {
+            this.lepesListaElem.textContent += uzenet + '\n';
+        }
+    }
+
+    lepesekTorles() {
+        this.lepesListaElem.textContent = '';
     }
 }

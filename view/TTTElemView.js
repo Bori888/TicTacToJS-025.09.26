@@ -3,17 +3,17 @@ export default class TTTElemView {
         this.index = index;
         this.div = document.createElement('div');
         this.div.classList.add('mezo');
-        this.div.textContent = ertek === '_' ? '' : ertek;  // ide jött a módosítás
+        this.div.textContent = ertek === '_' ? '' : ertek;
         szuloElem.appendChild(this.div);
     }
 
     frissit(ertek) {
-        this.div.textContent = ertek === '_' ? '' : ertek;  // és ide is
+        this.div.textContent = ertek === '_' ? '' : ertek;
     }
 
     kattintasEsemeny(callback) {
         this.div.addEventListener('click', () => {
-            callback(this.index); // Visszaadja a mező indexét
+            callback(this.index);
         });
     }
 }

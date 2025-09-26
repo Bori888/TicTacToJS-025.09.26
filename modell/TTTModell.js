@@ -1,9 +1,7 @@
 export default class TTTModell {
     constructor() {
-        this.lista = ['_', '_', '_',
-                      '_', '_', '_',
-                      '_', '_', '_'];
-        this.allapot = 0;
+        this.lista = Array(9).fill('_');
+        this.allapot = 0; // 0: X, 1: O
         this.vegeVanE = 'nincs';
     }
 
@@ -20,24 +18,26 @@ export default class TTTModell {
     }
 
     setAllapot(index) {
-        if (this.lista[index] === '_') {   // helyes, a mező üres '_'
+        if (this.lista[index] === '_' && this.vegeVanE === 'nincs') {
             this.lista[index] = this.allapot === 0 ? 'X' : 'O';
-            this.#allapotValt();
-            this._ellenoriz();
-            return true; // sikeres lépés
+            this.#ellenoriz();
+            if (this.vegeVanE === 'nincs') {
+                this.#valtAllapot();
+            }
+            return true;
         }
-        return false; // már foglalt mező
+        return false;
     }
 
-    #allapotValt() {
-        this.allapot = this.allapot === 0 ? 1 : 0;
+    #valtAllapot() {
+        this.allapot = 1 - this.allapot;
     }
 
-    _ellenoriz() {
+    #ellenoriz() {
         const nyeroMintak = [
-            [0,1,2], [3,4,5], [6,7,8],
-            [0,3,6], [1,4,7], [2,5,8],
-            [0,4,8], [2,4,6]
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6],
         ];
 
         for (const [a, b, c] of nyeroMintak) {
