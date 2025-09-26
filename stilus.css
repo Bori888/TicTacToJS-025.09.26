@@ -25,21 +25,55 @@ header h1 {
     justify-content: center;
     align-items: flex-start;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* törjön több sorba, ha szűk a hely */
 }
 
-/* Játéktábla stílusa */
+/* Mobilon függőleges stack */
+@media (max-width: 700px) {
+    #jatekterAllapotContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Játéktábla konténer */
 .tabla {
     display: grid;
-    grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(4, 50px);
+    grid-template-columns: repeat(4, 60px); /* 3 mező + 1 koordináta oszlop */
+    grid-template-rows: repeat(4, 60px);    /* 3 sor + 1 koordináta sor */
     gap: 5px;
     background-color: #145214;
-    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px #0b3d0b;
+    border: 2px solid black;
+    width: max-content;
+    padding: 10px;
+    color: #d0f0c0;
+    font-weight: bold;
+    user-select: none;
 }
 
-/* Koordináták cellái */
+/* Mezők */
+.mezo {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #1e6d1e;
+    color: #e0f5e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mezo:hover {
+    background-color: #3a8a3a;
+}
+
+/* Koordináták stílusa */
 .koordinata {
     display: flex;
     justify-content: center;
@@ -48,38 +82,39 @@ header h1 {
     color: #a6d785;
 }
 
-.sarok {
-    background-color: transparent;
-}
-
-/* Mezők */
-.mezo {
-    background-color: #1e6d1e;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #e0f5e0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s ease;
-}
-
-.mezo:hover {
-    background-color: #3a8a3a;
+/* Mobilon kisebb mezők */
+@media (max-width: 700px) {
+    .tabla {
+        grid-template-columns: repeat(4, 40px);
+        grid-template-rows: repeat(4, 40px);
+    }
+    .mezo {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
 }
 
 /* Játék állapot, infó doboz */
 #jatekinfok {
     max-width: 300px;
+    min-width: 280px;
     background-color: #145214;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 0 10px #0b3d0b;
     font-size: 1.1rem;
     line-height: 1.4;
+    color: #d0f0c0;
+    overflow-wrap: break-word;
+}
+
+/* Mobilon az állapotnézet is rugalmas */
+@media (max-width: 700px) {
+    #jatekinfok {
+        width: 90vw;
+        margin-top: 1rem;
+    }
 }
 
 /* Újraindító gomb */
@@ -106,9 +141,4 @@ footer {
     text-align: center;
     font-size: 0.9rem;
     color: #a6d785;
-}
-
-/* Eltüntetjük a fehér kockát, ha van */
-#ujraindit + * {
-    display: none;
 }

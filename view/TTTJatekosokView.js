@@ -2,7 +2,6 @@ export default class TTTJatekosokView {
     constructor(szuloElem) {
         this.szuloElem = szuloElem;
 
-        // Játékos státusz elemek
         this.kovetkezoElem = document.createElement('p');
         this.utolsoLepesElem = document.createElement('p');
 

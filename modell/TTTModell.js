@@ -20,18 +20,17 @@ export default class TTTModell {
     }
 
     setAllapot(index) {
-        if (this.lista[index] !== '_' || this.vegeVanE !== 'nincs') {
-            return;
+        if (this.lista[index] === '_') {   // helyes, a mező üres '_'
+            this.lista[index] = this.allapot === 0 ? 'X' : 'O';
+            this.#allapotValt();
+            this._ellenoriz();
+            return true; // sikeres lépés
         }
+        return false; // már foglalt mező
+    }
 
-        const jel = this.allapot === 0 ? 'O' : 'X';
-        this.lista[index] = jel;
-
-        this._ellenoriz();
-
-        if (this.vegeVanE === 'nincs') {
-            this.allapot = 1 - this.allapot;
-        }
+    #allapotValt() {
+        this.allapot = this.allapot === 0 ? 1 : 0;
     }
 
     _ellenoriz() {
@@ -47,7 +46,7 @@ export default class TTTModell {
                 this.lista[a] === this.lista[b] &&
                 this.lista[b] === this.lista[c]
             ) {
-                this.vegeVanE = this.lista[a].toLowerCase() + ' nyert';
+                this.vegeVanE = this.lista[a]; // 'X' vagy 'O'
                 return;
             }
         }

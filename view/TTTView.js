@@ -1,4 +1,3 @@
-// view/TTTView.js
 import TTTElemView from './TTTElemView.js';
 
 export default class TTTView {
@@ -15,7 +14,7 @@ export default class TTTView {
         const tabla = document.createElement('div');
         tabla.classList.add('tabla');
 
-        // sarok cella
+        // sarok cella (üres)
         const sarok = document.createElement('div');
         sarok.classList.add('koordinata', 'sarok');
         tabla.appendChild(sarok);
