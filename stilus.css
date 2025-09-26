@@ -22,25 +22,27 @@ header h1 {
     text-align: center;
 }
 
-/* Játéktábla és állapotsáv konténer */
+/* Közös konténer: játéktér és állapot egymás mellett */
 #jatekterAllapotContainer {
     display: flex;
     justify-content: center;
-    gap: 3rem; /* térköz a játék és az infók között */
+    align-items: flex-start;
+    gap: 3rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap; /* kisebb képernyőn szépen törik */
+    flex-wrap: wrap; /* mobilnézetben egymás alá rendezi */
 }
 
-/* Játéktábla */
+/* Játéktábla (3x3 grid) */
 #jatekter {
     display: grid;
     grid-template-columns: repeat(3, 110px);
     grid-template-rows: repeat(3, 110px);
     gap: 10px;
     justify-content: center;
+    width: max-content; /* hogy ne nyúljon szét a táblázat */
 }
 
-/* Egy mező */
+/* Egy mező (kocka) */
 .mezo {
     width: 110px;
     height: 110px;
@@ -96,6 +98,7 @@ header h1 {
 #legutobbiLepes {
     color: #b8e994;
     font-style: italic;
+    white-space: pre-line;
 }
 
 /* Újraindító gomb */
@@ -124,63 +127,11 @@ footer {
     color: #a6d785;
     margin-top: auto;
 }
-#jatekter {
-    display: grid;
-    grid-template-columns: repeat(3, 110px);
-    grid-template-rows: repeat(3, 110px);
-    gap: 10px;
-    justify-content: center;
-}
-.tabla {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px; /* vagy tetszőleges távolság a mezők között */
-}
-#jatekterAllapotContainer {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 3rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap; /* mobil nézetnél egymás alá rendeződik */
-}
-/* Játéktábla és állapotsáv konténer */
-#jatekterAllapotContainer {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 3rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
 
-/* Játéktábla */
-#jatekter {
-    display: grid;
-    grid-template-columns: repeat(3, 110px);
-    grid-template-rows: repeat(3, 110px);
-    gap: 10px;
-    justify-content: center;
-}
-
-/* Állapotsáv stílusai */
-#jatekinfok {
-    max-width: 320px;
-    background-color: #145214;
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 0 20px #0b3d0b;
-    color: #d0f0c0;
-    font-size: 1.3rem;
-    line-height: 1.5;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-/* Lépés kiírása dőlt betűvel */
-#legutobbiLepes {
-    color: #b8e994;
-    font-style: italic;
-    white-space: pre-line;
+/* Mobil nézet: ha a képernyő túl szűk, akkor egymás alá rendezzük */
+@media (max-width: 700px) {
+    #jatekterAllapotContainer {
+        flex-direction: column;
+        align-items: center;
+    }
 }
