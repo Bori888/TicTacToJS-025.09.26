@@ -2,42 +2,38 @@ import TTTElemView from './TTTElemView.js';
 
 export default class TTTView {
     constructor(szuloElem, lista) {
-        this.szuloElem = szuloElem;
-        this.elem = document.createElement('div');
-        this.elem.classList.add('tabla');
-        this.szuloElem.appendChild(this.elem);
+        this.szuloElem = szuloElem; // ez a #jatekter div, ami már CSS grid
         this.mezoElemek = [];
-        // Az első megjelenítés
-        this.megepit(lista, () => {});  // ideiglenes callback
+        this.megepit(lista, () => {}); // ideiglenes callback
     }
 
     megepit(lista, kattintasCallback) {
-        // Töröl minden korábbi mezőt
-        this.elem.innerHTML = '';
+        // Töröljük a szülőelem tartalmát, ha van
+        this.szuloElem.innerHTML = '';
         this.mezoElemek = [];
 
-        // Új mezők létrehozása 9 db
+        // Új mezők létrehozása
         for (let i = 0; i < 9; i++) {
             const ertek = lista[i] !== undefined ? lista[i] : '_';
-            const mezo = new TTTElemView(this.elem, ertek, i, kattintasCallback);
+            const mezo = new TTTElemView(this.szuloElem, ertek, i);
             this.mezoElemek.push(mezo);
         }
+
+        // Eseménykezelők beállítása
+        this.kattintasEsemeny(kattintasCallback);
     }
 
     megjelenit(lista, kattintasCallback) {
-        // Újragenerálunk minden mezőt
         this.megepit(lista, kattintasCallback);
     }
 
     frissit(lista) {
-        // Csak frissíti meglévő mezők tartalmát
         for (let i = 0; i < this.mezoElemek.length; i++) {
             this.mezoElemek[i].frissit(lista[i]);
         }
     }
 
     kattintasEsemeny(callback) {
-        // Beállítja az összes mezőre az eseményt
         for (const mezo of this.mezoElemek) {
             mezo.kattintasEsemeny(callback);
         }

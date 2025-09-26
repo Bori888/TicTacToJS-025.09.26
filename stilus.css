@@ -1,8 +1,8 @@
-/* Általános testreszabás */
+/* Alapbeállítások */
 body {
     font-family: Arial, sans-serif;
-    background-color: #0b3d0b; /* sötét zöld háttér */
-    color: #d0f0c0; /* világos zöld betűszín */
+    background-color: #0b3d0b;
+    color: #d0f0c0;
     margin: 0;
     padding: 1rem;
     display: flex;
@@ -22,27 +22,25 @@ header h1 {
     text-align: center;
 }
 
-/* Közös konténer: játéktér és állapot egymás mellett */
+/* Játék és állapot konténer – egymás mellett */
 #jatekterAllapotContainer {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     gap: 3rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap; /* mobilnézetben egymás alá rendezi */
+    flex-wrap: wrap; /* mobilon egymás alá */
 }
 
-/* Játéktábla (3x3 grid) */
+/* JÁTÉKTÉR: 3x3 rács */
 #jatekter {
     display: grid;
     grid-template-columns: repeat(3, 110px);
     grid-template-rows: repeat(3, 110px);
     gap: 10px;
-    justify-content: center;
-    width: max-content; /* hogy ne nyúljon szét a táblázat */
 }
 
-/* Egy mező (kocka) */
+/* MEZŐ – egy kocka */
 .mezo {
     width: 110px;
     height: 110px;
@@ -62,7 +60,7 @@ header h1 {
     background-color: #3a8a3a;
 }
 
-/* Állapotsáv stílusai */
+/* JÁTÉKINFÓK */
 #jatekinfok {
     max-width: 320px;
     background-color: #145214;
@@ -77,7 +75,6 @@ header h1 {
     justify-content: flex-start;
 }
 
-/* Üzenetek külön elválasztása, egymás alatti megjelenítés */
 #altalanosUzenet,
 #legutobbiLepes,
 #nyertesUzenet {
@@ -85,16 +82,14 @@ header h1 {
     text-align: center;
 }
 
-/* Állapot kiemelt üzenet */
 #nyertesUzenet {
     color: #ff4444;
-    font-weight: 900;
+    font-weight: bold;
     font-size: 1.8rem;
     text-shadow: 1.5px 1.5px 3px #660000;
     margin-top: 1rem;
 }
 
-/* Lépés kiírása dőlt betűvel */
 #legutobbiLepes {
     color: #b8e994;
     font-style: italic;
@@ -128,10 +123,16 @@ footer {
     margin-top: auto;
 }
 
-/* Mobil nézet: ha a képernyő túl szűk, akkor egymás alá rendezzük */
+/* Mobil nézethez */
 @media (max-width: 700px) {
     #jatekterAllapotContainer {
         flex-direction: column;
         align-items: center;
     }
+}
+#jatekter {
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    grid-template-rows: repeat(3, 110px);
+    gap: 10px;
 }
