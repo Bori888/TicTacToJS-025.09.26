@@ -1,8 +1,14 @@
+// modell/TTTModell.js
 export default class TTTModell {
-    constructor() {
+    constructor(xJel = 'X', oJel = 'O') {
+        // a kiválasztott jelek
+        this.xJel = xJel;
+        this.oJel = oJel;
+
+        // játék állapota
         this.lista = Array(9).fill('_');
-        this.allapot = 0; // 0: X, 1: O
-        this.vegeVanE = 'nincs';
+        this.allapot = 0; // 0: X-játékos lép, 1: O-játékos lép (értelmezés a controller szerint)
+        this.vegeVanE = 'nincs'; // 'nincs' | 'döntetlen' | <nyerő jel>
     }
 
     getLista() {
@@ -19,7 +25,8 @@ export default class TTTModell {
 
     setAllapot(index) {
         if (this.lista[index] === '_' && this.vegeVanE === 'nincs') {
-            this.lista[index] = this.allapot === 0 ? 'X' : 'O';
+            const jel = this.allapot === 0 ? this.xJel : this.oJel;
+            this.lista[index] = jel;
             this.#ellenoriz();
             if (this.vegeVanE === 'nincs') {
                 this.#valtAllapot();
@@ -46,7 +53,7 @@ export default class TTTModell {
                 this.lista[a] === this.lista[b] &&
                 this.lista[b] === this.lista[c]
             ) {
-                this.vegeVanE = this.lista[a]; // 'X' vagy 'O'
+                this.vegeVanE = this.lista[a]; // a győztes jel (a kiválasztott jel lesz)
                 return;
             }
         }
@@ -54,5 +61,14 @@ export default class TTTModell {
         if (!this.lista.includes('_')) {
             this.vegeVanE = 'döntetlen';
         }
+    }
+
+    // (opcionális) gyors újraindító — ha egyszerűbb akarod hívni a modellből
+    ujraallit(xJel = this.xJel, oJel = this.oJel) {
+        this.xJel = xJel;
+        this.oJel = oJel;
+        this.lista = Array(9).fill('_');
+        this.allapot = 0;
+        this.vegeVanE = 'nincs';
     }
 }

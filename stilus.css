@@ -17,9 +17,42 @@ header h1 {
 
 /* Beállítások szekció */
 #beallitasok {
-    max-width: 300px;
+    max-width: 400px;
     margin: 0 auto 2rem auto;
     text-align: center;
+}
+
+/* Játékos beállítás: név + jel egy sorban */
+.jatekos-beallitas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.jatekos-beallitas label {
+    font-weight: bold;
+    min-width: 90px;
+    text-align: right;
+}
+
+.jatekos-beallitas input {
+    flex: 1;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #3a8a3a;
+    background-color: #145214;
+    color: #d0f0c0;
+}
+
+.jatekos-beallitas select {
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #3a8a3a;
+    background-color: #145214;
+    color: #d0f0c0;
+    font-weight: bold;
 }
 
 /* Játék és állapot konténer – egymás mellett */
@@ -129,10 +162,14 @@ footer {
         flex-direction: column;
         align-items: center;
     }
-}
-#jatekter {
-    display: grid;
-    grid-template-columns: repeat(3, 110px);
-    grid-template-rows: repeat(3, 110px);
-    gap: 10px;
+
+    .jatekos-beallitas {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .jatekos-beallitas label {
+        text-align: left;
+        margin-bottom: 0.3rem;
+    }
 }

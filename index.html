@@ -18,14 +18,27 @@
     </header>
 
     <section id="beallitasok">
-        <label for="xJatekosNev">X játékos neve:</label>
-        <input type="text" id="xJatekosNev" placeholder="X játékos neve" />
-        <br />
-        <label for="oJatekosNev">O játékos neve:</label>
-        <input type="text" id="oJatekosNev" placeholder="O játékos neve" />
+        <div class="jatekos-beallitas">
+            <label for="xJatekosNev">X játékos:</label>
+            <input type="text" id="xJatekosNev" placeholder="X játékos neve" />
+            <select id="xJel">
+                <option value="X">X</option>
+                <option value="O">O</option>
+                <option value="*">*</option>
+            </select>
+        </div>
+
+        <div class="jatekos-beallitas">
+            <label for="oJatekosNev">O játékos:</label>
+            <input type="text" id="oJatekosNev" placeholder="O játékos neve" />
+            <select id="oJel">
+                <option value="X">X</option>
+                <option value="O">O</option>
+                <option value="*">*</option>
+            </select>
+        </div>
     </section>
 
-    <!-- Közös konténer: játék és állapot egymás mellett -->
     <section id="jatekterAllapotContainer">
         <div id="jatekter"></div>
 
