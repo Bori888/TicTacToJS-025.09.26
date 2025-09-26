@@ -76,3 +76,29 @@ footer {
     font-size: 0.9rem;
     color: #a2c1a2;
 }
+
+.tabla {
+    display: grid;
+    grid-template-columns: 20px repeat(3, 80px); /* balra koordináta */
+    grid-template-rows: 20px repeat(3, 80px);    /* fölül koordináta */
+    gap: 10px;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+/* koordináta cellák */
+.koordinata {
+    color: #a2c1a2;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    user-select: none;
+}
+
+/* a sarkon legyen üres */
+.koordinata.sarok {
+    background: transparent;
+    box-shadow: none;
+}

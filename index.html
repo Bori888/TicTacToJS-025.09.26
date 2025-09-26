@@ -17,15 +17,33 @@
         <header>
             <h1>Tic-Tac-To</h1>
         </header>
+
+        <section id="beallitasok" style="margin-bottom: 1rem;">
+            <div>
+                <label for="xJatekosNev">X játékos neve:</label><br>
+                <input type="text" id="xJatekosNev" placeholder="X neve" />
+            </div>
+            <div style="margin-top: 0.5rem;">
+                <label for="oJatekosNev">O játékos neve:</label><br>
+                <input type="text" id="oJatekosNev" placeholder="O neve" />
+            </div>
+            <button id="nevMentese" style="margin-top: 1rem;">Mentés</button>
+        </section>
+
         <div id="jatekter"></div>
-        
-        <p id="infoSzoveg"></p>
+
+        <section id="jatekinfok">
+            <p id="kovetkezoJatekos"></p>
+            <p id="utolsoLepes"></p>
+            <p id="infoSzoveg"></p>  <!-- EZT HOZZÁADTAM -->
+        </section>
+
         <button id="ujraindit">Újraindít</button>
+
         <footer>
             <p>Készítette I. Bori</p>
         </footer>
     </main>
-
 </body>
 
 </html>
